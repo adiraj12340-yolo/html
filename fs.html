@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    :root {
+      --primary-bg: #ffffff;
+      --primary-color: #222222;
+      --secondary-bg: #f4f4f4;
+      --accent: #007bff;
+    }
+
+    [data-theme="dark"] {
+      --primary-bg: #1e1e2f;
+      --primary-color: #f1f1f1;
+      --secondary-bg: #2e2e3e;
+      --accent: #1e90ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--primary-color);
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      grid-template-rows: 60px 1fr;
+      grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+      height: 100vh;
+    }
+
+    header {
+      grid-area: header;
+      background: var(--secondary-bg);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--primary-color);
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+
+    aside {
+      grid-area: sidebar;
+      background: var(--secondary-bg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    aside a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    main {
+      grid-area: main;
+      padding: 20px;
+      background-color: var(--primary-bg);
+      overflow-y: auto;
+    }
+
+    .card {
+      background: var(--secondary-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px auto auto;
+        grid-template-areas:
+          "header"
+          "sidebar"
+          "main";
+      }
+
+      aside {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <a href="#">Dashboard</a>
+    <a href="#">Users</a>
+    <a href="#">Settings</a>
+    <a href="#">Reports</a>
+  </aside>
+  <header>
+    <h1>Admin Panel</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+  <main>
+    <div class="grid">
+      <div class="card">Card 1: Analytics</div>
+      <div class="card">Card 2: User Stats</div>
+      <div class="card">Card 3: System Logs</div>
+      <div class="card">Card 4: Tasks</div>
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+    }
+  </script>
+</body>
+</html>
